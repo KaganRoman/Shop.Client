@@ -42,7 +42,7 @@ namespace Rumble.Shop
 				{
 					Name = "ELECTRONICS",
 					Url = "http://www.rakuten.com/ct/rss/electronics.xml",
-					ImageUrl = "http://img1.r10.io/PIC/87269247/0/1/125/87269247.jpg"
+					ImageUrl = "http://img1.r10.io/PIC/91227708/0/1/125/91227708.jpg"
 				},
 				new Category
 				{

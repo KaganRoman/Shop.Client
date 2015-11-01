@@ -24,7 +24,7 @@ namespace Rumble.Shop
 			DataTemplate template = null;
 			if (item == "Home")
 			{
-				icon = "featured.png";
+				icon = "home.png";
 				template = Resources["HomeTemplate"] as DataTemplate;
 			}
 			if (item == "Featured") {
@@ -97,6 +97,17 @@ namespace Rumble.Shop
 		{
 			(BindingContext as ProductsViewModel).CurrentCategory = (sender as BindableObject).BindingContext as Category;
             CurrentPage = Children[2];
+		}
+
+		private void ToolbarItem_Clicked(object sender, EventArgs e)
+		{
+			var item = sender as ToolbarItem;
+			if(item == null) return;
+
+			if (item.Text == "Home")
+				CurrentPage = Children[0];
+			if (item.Text == "Cart")
+				CurrentPage = Children[3];
 		}
 	}
 }

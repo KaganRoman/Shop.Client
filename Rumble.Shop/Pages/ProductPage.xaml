@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Rumble.Shop.ProductPage"
-	Padding="15" Title="S H O P P E D" >
+	Padding="15" Title="" >
 
 	 <ContentPage.ToolbarItems>
 	  <ToolbarItem x:Name="_addCart" Name="Add" Icon="cart.png" />

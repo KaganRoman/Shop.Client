@@ -8,9 +8,10 @@
 		>
 
  <ContentPage.ToolbarItems>
-   <ToolbarItem Name="Home" Icon="search.png" />
-   <ToolbarItem Name="Search" Icon="search.png" />
-   <ToolbarItem Name="Bag" Icon="search.png" />
+   <ToolbarItem Name="       " />
+   <ToolbarItem Name="Home" Icon="home.png" Clicked="ToolbarItem_Clicked" />
+   <ToolbarItem Name="Search" Icon="search.png" Clicked="ToolbarItem_Clicked"/>
+   <ToolbarItem Name="Cart" Icon="cart.png" Clicked="ToolbarItem_Clicked"/>
  </ContentPage.ToolbarItems>
 
 <TabbedPage.Resources>	 
@@ -246,7 +247,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="OrdersTemplate">
-      <WebView Source="https://www.paypal.com/signin/"/>
+      <ContentView/>
     </DataTemplate>
 
     <localConverters:EmptyListToBoolConverter x:Key="emptyListVisibilityConverter"/>
