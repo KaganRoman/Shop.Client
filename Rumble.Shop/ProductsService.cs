@@ -22,6 +22,8 @@ namespace Rumble.Shop
 		public List<Category> Categories { get; set; }
 		public List<Order> Orders { get; set; }
 
+		public List<Product> AllItems => _categoryItems.Values.SelectMany(i => i).Concat(FeaturedItems).ToList();
+
 		private Dictionary<Category, List<Product>> _categoryItems;
 
 		public async Task Init()

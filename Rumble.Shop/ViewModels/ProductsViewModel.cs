@@ -42,10 +42,9 @@ namespace Rumble.Shop
 
 		public IEnumerable<ProductViewModel> AddedItems
 		{
-			get {
-				return Items.Where (i => i.Added).
-					Concat(FeaturedItems.Where(i => i.Added)).
-					Concat(MainItems.Where(i => i.Added));
+			get
+			{
+				return ProductsService.Products.AllItems.Where(i => i.Added).Select(p => new ProductViewModel(p, _selectItemAction));
 			}
 		}
 
