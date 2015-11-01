@@ -132,7 +132,7 @@ namespace Rumble.Shop
 			{
 				var l = new List<Grouping>
 				{
-					new Grouping("0", 290, ProductsService.Products.Categories.GetRange(0,1))
+					new Grouping("0", 280, ProductsService.Products.Categories.GetRange(0,1))
 					{
 						Item = MainItem
 					},

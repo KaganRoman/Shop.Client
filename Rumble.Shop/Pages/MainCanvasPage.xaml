@@ -108,9 +108,8 @@
             <ContentView WidthRequest="10"/>
           </StackLayout>
         </AbsoluteLayout>
-        <StackLayout Padding="10">
-          <Label Text="Promotion Banner"/>
-          <Label Text = "Categories" FontSize="14" FontAttributes="Bold"/>
+        <StackLayout Padding="1">
+          <Image HeightRequest="50" Source="banner.jpg" Aspect="AspectFit"/>
         </StackLayout>
       </StackLayout>
     </DataTemplate>

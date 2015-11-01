@@ -4,6 +4,7 @@
 	Padding="15" Title="" >
 
 	 <ContentPage.ToolbarItems>
+	  <ToolbarItem Name="Share" Icon="share.png" />
 	  <ToolbarItem x:Name="_addCart" Name="Add" Icon="cart.png" />
 	 </ContentPage.ToolbarItems>
 
