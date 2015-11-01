@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Rumble.Shop.ProductPage"
+	xmlns:localUI="clr-namespace:Rumble.Shop.UI;assembly=Rumble.Shop" 
+	Padding="15" Title="S H O P P E D" >
+
+	 <ContentPage.ToolbarItems>
+	  <ToolbarItem x:Name="_addCart" Name="Add" Icon="cart.png" />
+	 </ContentPage.ToolbarItems>
+
+	<ContentPage.Content>
+		<StackLayout Orientation="Vertical" BackgroundColor="White">
+			<StackLayout Orientation="Horizontal">
+				<Label Text="{Binding Name}" FontAttributes="Bold" FontSize="16" HorizontalOptions="StartAndExpand"/>
+				<Label Text="{Binding Price}" WidthRequest="65" FontAttributes="Bold" FontSize="16" HorizontalOptions="End" TextColor="Red"/>
+			</StackLayout>
+			<BoxView HorizontalOptions="CenterAndExpand" HeightRequest="1" Opacity="0.3" Color="Gray" WidthRequest="1000"/>
+			<Image Aspect="AspectFit" Source="{Binding ImageUrl}" HeightRequest="120"/>
+			<BoxView HorizontalOptions="CenterAndExpand" HeightRequest="1" Opacity="0.3" Color="Gray" WidthRequest="1000"/>
+			<Label Text="Product Information" FontAttributes="Bold" FontSize="16"/>
+			<Label Text="{Binding Details}" FontSize="10"/>
+			<BoxView HorizontalOptions="CenterAndExpand" HeightRequest="1" Opacity="0.3" Color="Gray" WidthRequest="1000"/>
+			<StackLayout Orientation="Horizontal" Padding="0,10,0,10">
+				<Label Text="Reviews" FontAttributes="Bold" FontSize="16" HorizontalOptions="StartAndExpand"/>
+				<Image Source="rating.png" HeightRequest="20" HorizontalOptions="End"/>
+				<Label Text="(35)" FontSize="16"/>
+			</StackLayout>
+			<StackLayout x:Name="_addToBag" BackgroundColor="#4780ED" Padding="0,10,0,10">
+				<Label x:Name="_addToBagLabel" Text="ADD TO BAG" FontAttributes="Bold" HorizontalOptions="Center" TextColor="White" BackgroundColor="Transparent"/>
+			</StackLayout>
+			<StackLayout BackgroundColor="#EBEBEB" Padding="0,10,0,10">
+				<Label Text="SAVE FOR LATER" FontAttributes="Bold"  HorizontalOptions="CenterAndExpand" TextColor="Black" BackgroundColor="Transparent"/>
+			</StackLayout>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>
+	
