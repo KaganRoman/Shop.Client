@@ -1,33 +1,42 @@
 ﻿using System;
 using System.Windows.Input;
+using Rumble.Shop.Models;
+using Xamarin.Forms;
 
 namespace Rumble.Shop
 {
 	public class ProductViewModel : ViewModelBase
 	{
-		public string Name { get; set;}
-		public string ImageUrl { get; set; }
-		public string Price { get; set; }
-		public double PriceD { get; set; }
-		public int Rating { get; set; }
-		public string Category { get; set; }
-		public string Details { get; set; }
+		public ProductViewModel(Product p, Action<object> action)
+		{
+			Product = p;
+			ClickCommand = new Command(action);
+		}
+
+		public Product Product { get; set; }
 
 		public ICommand ClickCommand { get; set; }
 
-		private bool _added;
+
+		public string Name => Product.Name;
+		public string ImageUrl => Product.ImageUrl;
+		public string Price => Product.Price;
+		public double PriceD => Product.PriceD;
+		public int Rating => Product.Rating;
+		public string Category => Product.Category;
+		public string Details => Product.Details;
+
 		public bool Added { 
 			get { 
-				return _added; 
+				return Product.Added; 
 			}
 			set { 
-				if (_added != value) {
-					_added = value;
+				if (Product.Added != value) {
+					Product.Added = value;
 					OnPropertyChanged ("Added");
 				}
 			}
 		}
-
 	}
 }
 

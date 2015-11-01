@@ -1,54 +1,21 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    	xmlns:local="clr-namespace:Rumble.Shop.Renderers;assembly=Rumble.Shop"
     	xmlns:localUI="clr-namespace:Rumble.Shop.UI;assembly=Rumble.Shop"
     	xmlns:localConverters="clr-namespace:Rumble.Shop.Converters;assembly=Rumble.Shop"
-    	xmlns:views="clr-namespace:Rumble.Shop.Views;assembly=Rumble.Shop"
 		x:Class="Rumble.Shop.MainCanvasPage"
 		Title="S H O P P E D"
 		>
 
  <ContentPage.ToolbarItems>
-  <ToolbarItem Name="Search" Icon="search.png" />
+   <ToolbarItem Name="Home" Icon="search.png" />
+   <ToolbarItem Name="Search" Icon="search.png" />
+   <ToolbarItem Name="Bag" Icon="search.png" />
  </ContentPage.ToolbarItems>
 
 <TabbedPage.Resources>	 
 	<ResourceDictionary>
-	<DataTemplate x:Key="BagTemplate">
-		<StackLayout Orientation="Vertical">
-			<StackLayout BackgroundColor="#F0F0F0" Orientation="Horizontal" Padding="15">
-				<Label Text="Subtotal: " FontSize="20"/>
-				<Label Text="{Binding TotalPrice, StringFormat='{0:N2}'}" FontSize="20" FontAttributes="Bold"/>
-				<Label Text="Update" HorizontalOptions="EndAndExpand" TextColor="#4780ED" FontSize="20"/>
-			</StackLayout>
-			<ListView IsVisible="{Binding AddedItems, Converter={StaticResource emptyListVisibilityConverter}}" 
-				ItemsSource="{Binding AddedItems}" ItemTemplate="{StaticResource ProductCellCheckoutTemplate}" HasUnevenRows="true"/>
-			<BoxView HorizontalOptions="CenterAndExpand" HeightRequest="1" Opacity="0.3" Color="Gray" WidthRequest="1000"/>
-			<StackLayout Orientation="Vertical" Padding="15,5,15,15" >
-				<StackLayout BackgroundColor="#4780ED" Padding="0,10,0,10"
-						IsVisible="{Binding AddedItems, Converter={StaticResource emptyListVisibilityConverter}}" >
-				    <StackLayout.GestureRecognizers>
-				        <TapGestureRecognizer Tapped="Checkout_Clicked"/>
-				    </StackLayout.GestureRecognizers>
-					<Label Text="CHECKOUT" FontAttributes="Bold" HorizontalOptions="Center" TextColor="White" BackgroundColor="Transparent"/>
-				</StackLayout>
-				<StackLayout BackgroundColor="#EBEBEB" Padding="0,10,0,10">
-				    <StackLayout.GestureRecognizers>
-				        <TapGestureRecognizer Tapped="ContinueShopping_Clicked"/>
-				    </StackLayout.GestureRecognizers>
-					<Label Text="CONTINUE SHOPPING" FontAttributes="Bold"  HorizontalOptions="CenterAndExpand" TextColor="Black" BackgroundColor="Transparent"/>
-				</StackLayout>
-			</StackLayout>
-		</StackLayout>
-	</DataTemplate>
-
-	<DataTemplate x:Key="OrdersTemplate">
-		<localUI:FullWidthImage Aspect="AspectFill"
-			Source="http://www.whiskyonline-shop.com/images/products/3085-5323bowmore17yobox.jpg"/>
-	</DataTemplate>
-
-	<DataTemplate x:Key="ProductCellCheckoutTemplate">
+  	<DataTemplate x:Key="ProductCellCheckoutTemplate">
     	<localUI:PhoneViewCell  CellHeight="100" ClickCommand="{Binding ClickCommand}">
 	    <Grid HeightRequest="100" IsClippedToBounds="true">
 	      <Grid.RowDefinitions>
@@ -72,7 +39,7 @@
 	    </localUI:PhoneViewCell>
 	</DataTemplate>
 
-	<DataTemplate x:Key="ProductCellTemplate">
+  	<DataTemplate x:Key="ProductCellTemplate">
     	<localUI:PhoneViewCell  CellHeight="100" ClickCommand="{Binding ClickCommand}">
 	    <Grid HeightRequest="100" IsClippedToBounds="true">
 	      <Grid.RowDefinitions>
@@ -97,109 +64,192 @@
 	    </localUI:PhoneViewCell>
 	</DataTemplate>
 
-	<DataTemplate x:Key="ProductsTemplate">
-		<ListView ItemsSource="{Binding GroupedItems}" ItemTemplate="{StaticResource ProductCellTemplate}"
-			HasUnevenRows="true" IsGroupingEnabled="true" GroupDisplayBinding="{Binding Key}">
-					<ListView.GroupHeaderTemplate>
-					<DataTemplate>
-						<ViewCell Height="25">
-						<StackLayout VerticalOptions="FillAndExpand" Padding="5" BackgroundColor="#3498DB">
-						<Label Text="{Binding Key}" TextColor="White" VerticalOptions="Center"/>
-						</StackLayout>
-						</ViewCell>
-					</DataTemplate>
-					</ListView.GroupHeaderTemplate>
-		</ListView>
-	</DataTemplate>
-
-	<DataTemplate x:Key="BigProductTemplate">
-		<StackLayout>
-	    <AbsoluteLayout HeightRequest="220">
-      		<localUI:FullWidthImage Aspect="AspectFill" Source="{Binding ImageUrl}"/>
-	      	<StackLayout Orientation="Horizontal" BackgroundColor="#E04780ED"
-	      		AbsoluteLayout.LayoutBounds="0.0, 1.0, 1.0, 0.25" AbsoluteLayout.LayoutFlags="All">
-	      		<StackLayout Padding="10">
-	 	  	     	<Label HorizontalOptions="Start" Text="Save upto 50%" TextColor="White" FontAttributes="Bold" FontSize="12"/>
-	 	  	     	<Label HorizontalOptions="Start" Text="On selected products" TextColor="White" FontSize="12"/>
-	      		</StackLayout>
-				<Frame VerticalOptions="Center" HorizontalOptions="EndAndExpand" Padding="5" BackgroundColor="Transparent" OutlineColor="White" HasShadow="false">
-					    <Frame.GestureRecognizers>
-					        <TapGestureRecognizer Tapped="ViewOffer_Clicked"/>
-					    </Frame.GestureRecognizers>
-					 	<Label HorizontalOptions="End" VerticalOptions="Center" Text="View offer" TextColor="White" FontSize="12"/>
-      			</Frame>
-				<ContentView WidthRequest="10"/>
+    <DataTemplate x:Key="ProductCellFeaturedTemplate">
+      <localUI:PhoneViewCell  CellHeight="100" ClickCommand="{Binding ClickCommand}">
+        <Grid HeightRequest="100" IsClippedToBounds="true">
+          <Grid.RowDefinitions>
+            <RowDefinition/>
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <ContentView Padding="10">
+            <Frame HasShadow="false" OutlineColor="#EBEBEB" Padding="10">
+              <localUI:FullWidthImage Aspect="AspectFill" Source="{Binding ImageUrl}"/>
+            </Frame>
+          </ContentView>
+          <StackLayout Grid.Row="0" Grid.Column="1" Padding="5, 10, 10, 10">
+            <Label Grid.Row="0" Grid.ColumnSpan="2" VerticalOptions="Center" Text="{Binding Name}" FontSize="12" FontAttributes="Bold" />
+            <Label Grid.Row="1" Grid.Column="1" FontSize="12" VerticalOptions="Start" Text="{Binding Price}" TextColor="Red" />
+            <Label FontSize="12" VerticalOptions="EndAndExpand" Text="30% discount" FontAttributes="Italic" TextColor="Gray"/>
           </StackLayout>
-	    </AbsoluteLayout>   
-	  	<StackLayout Padding="10">
-	    	<Label Text = "Featured Products" FontSize="14" FontAttributes="Bold"/>
-	  	</StackLayout>
-   		</StackLayout>
-	</DataTemplate>
+        </Grid>
+      </localUI:PhoneViewCell>
+    </DataTemplate>
 
-	<DataTemplate x:Key="SmallProductTemplate">
-    	<Grid MinimumHeightRequest="200">
-	      <Grid.RowDefinitions>
-	        <RowDefinition Height="100"/>
-	        <RowDefinition Height="Auto"/>
-	      </Grid.RowDefinitions>
-	      <Grid.ColumnDefinitions>
-	        <ColumnDefinition Width="*"/>
-	      </Grid.ColumnDefinitions>
-			<Frame Grid.Row="0" Grid.Column="0" HasShadow="false" OutlineColor="#EBEBEB" Padding="10">
-  				<Image Aspect="AspectFill" Source="{Binding ImageUrl}"/>
-			</Frame>				
-      		<StackLayout Grid.Row="1" Grid.Column="0" Padding="10" Orientation="Horizontal">
-      			<StackLayout Orientation="Vertical">
-	 	  	     	<Label HorizontalOptions="Start" Text="{Binding Name}" FontSize="12"/>
-	 	  	     	<Label HorizontalOptions="Start" Text="{Binding Price}" FontAttributes="Bold" FontSize="12"/>
-	      		</StackLayout>
-				<Label Text=">" TextColor="Gray" FontAttributes="Bold" FontSize="16" HorizontalOptions="EndAndExpand" VerticalOptions="Center"/>
-      		</StackLayout>
-		    <Grid.GestureRecognizers>
-		        <TapGestureRecognizer Tapped="Featured_Clicked"/>
-		    </Grid.GestureRecognizers>
-    	</Grid>
-	</DataTemplate>
+    <DataTemplate x:Key="BigProductTemplate">
+      <StackLayout>
+        <AbsoluteLayout HeightRequest="220">
+          <localUI:FullWidthImage Aspect="AspectFill" Source="{Binding ImageUrl}"/>
+          <StackLayout Orientation="Horizontal" BackgroundColor="#E04780ED"
+	      		AbsoluteLayout.LayoutBounds="0.0, 1.0, 1.0, 0.25" AbsoluteLayout.LayoutFlags="All">
+            <StackLayout Padding="10">
+              <Label HorizontalOptions="Start" Text="Save upto 50%" TextColor="White" FontAttributes="Bold" FontSize="12"/>
+              <Label HorizontalOptions="Start" Text="On selected products" TextColor="White" FontSize="12"/>
+            </StackLayout>
+            <Frame VerticalOptions="Center" HorizontalOptions="EndAndExpand" Padding="5" BackgroundColor="Transparent" OutlineColor="White" HasShadow="false">
+              <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="ViewOffer_Clicked"/>
+              </Frame.GestureRecognizers>
+              <Label HorizontalOptions="End" VerticalOptions="Center" Text="View offer" TextColor="White" FontSize="12"/>
+            </Frame>
+            <ContentView WidthRequest="10"/>
+          </StackLayout>
+        </AbsoluteLayout>
+        <StackLayout Padding="10">
+          <Label Text="Promotion Banner"/>
+          <Label Text = "Categories" FontSize="14" FontAttributes="Bold"/>
+        </StackLayout>
+      </StackLayout>
+    </DataTemplate>
 
-	<DataTemplate x:Key="SmallTupleProductTemplate">
-		<Grid MinimumHeightRequest="200">
-	      <Grid.RowDefinitions>
-	        <RowDefinition/>
-	      </Grid.RowDefinitions>
-	      <Grid.ColumnDefinitions>
-	        <ColumnDefinition Width="*"/>
-	        <ColumnDefinition Width="*"/>
-	      </Grid.ColumnDefinitions>
-		  	<localUI:ContentControl Grid.Column="0" BindingContext="{Binding Item1}" ItemTemplate="{StaticResource SmallProductTemplate}"/>
-		  	<localUI:ContentControl Grid.Column="1" BindingContext="{Binding Item2}" ItemTemplate="{StaticResource SmallProductTemplate}"/>
-		</Grid>
-	</DataTemplate>
+    <DataTemplate x:Key="SmallProductTemplate">
+      <Grid MinimumHeightRequest="200">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="100"/>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Frame Grid.Row="0" Grid.Column="0" HasShadow="false" OutlineColor="#EBEBEB" Padding="10">
+          <Image Aspect="AspectFill" Source="{Binding ImageUrl}"/>
+        </Frame>
+        <StackLayout Grid.Row="1" Grid.Column="0" Padding="10" Orientation="Horizontal">
+          <StackLayout Orientation="Vertical">
+            <Label HorizontalOptions="Start" Text="{Binding Name}" FontSize="12"/>
+            <Label HorizontalOptions="Start" Text="{Binding Price}" FontAttributes="Bold" FontSize="12"/>
+          </StackLayout>
+          <Label Text=">" TextColor="Gray" FontAttributes="Bold" FontSize="16" HorizontalOptions="EndAndExpand" VerticalOptions="Center"/>
+        </StackLayout>
+        <Grid.GestureRecognizers>
+          <TapGestureRecognizer Tapped="Featured_Clicked"/>
+        </Grid.GestureRecognizers>
+      </Grid>
+    </DataTemplate>
 
-	<DataTemplate x:Key="FeaturedTemplate">
-	    <ListView HasUnevenRows="true" GroupDisplayBinding="{Binding Key}" ItemsSource="{Binding GroupedMainItems}" 
+    <DataTemplate x:Key="SmallTupleProductTemplate">
+      <Grid MinimumHeightRequest="200">
+        <Grid.RowDefinitions>
+          <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <localUI:ContentControl Grid.Column="0" BindingContext="{Binding Item1}" ItemTemplate="{StaticResource SmallProductTemplate}"/>
+        <localUI:ContentControl Grid.Column="1" BindingContext="{Binding Item2}" ItemTemplate="{StaticResource SmallProductTemplate}"/>
+      </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="CategoryTemplate">
+      <Grid MinimumHeightRequest="150">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="100"/>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Frame Grid.Row="0" Grid.Column="0" HasShadow="false" OutlineColor="#EBEBEB" Padding="10">
+          <Image Aspect="AspectFill" Source="{Binding ImageUrl}"/>
+        </Frame>
+        <StackLayout Grid.Row="0" Grid.Column="1" Padding="10" Orientation="Horizontal">
+          <Label HorizontalOptions="Start" VerticalOptions="Center" Text="{Binding Name}" FontSize="12"/>
+        </StackLayout>
+        <StackLayout Grid.Row="0" Grid.Column="2" Padding="10" Orientation="Horizontal">
+          <Label Text=">" TextColor="Gray" FontAttributes="Bold" FontSize="16" HorizontalOptions="EndAndExpand" VerticalOptions="Center"/>
+        </StackLayout>
+        <Grid.GestureRecognizers>
+          <TapGestureRecognizer Tapped="Category_Clicked"/>
+        </Grid.GestureRecognizers>
+      </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="ProductsTemplate">
+      <ListView ItemsSource="{Binding GroupedItems}" ItemTemplate="{StaticResource ProductCellTemplate}"
+          HasUnevenRows="true" IsGroupingEnabled="true" GroupDisplayBinding="{Binding Key}">
+        <ListView.GroupHeaderTemplate>
+          <DataTemplate>
+            <ViewCell Height="25">
+              <StackLayout VerticalOptions="FillAndExpand" Padding="5" BackgroundColor="#3498DB">
+                <Label Text="{Binding Key}" TextColor="White" VerticalOptions="Center"/>
+              </StackLayout>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.GroupHeaderTemplate>
+      </ListView>
+    </DataTemplate>
+
+    <DataTemplate x:Key="FeaturedTemplate">
+      <ListView ItemsSource="{Binding Items}" ItemTemplate="{StaticResource ProductCellFeaturedTemplate}" HasUnevenRows="true"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="HomeTemplate">
+      <ListView HasUnevenRows="true" GroupDisplayBinding="{Binding Key}" ItemsSource="{Binding HomeItems}"
 	    IsGroupingEnabled="true" BackgroundColor="Transparent">
-			<ListView.GroupHeaderTemplate>
-			<DataTemplate>
-    			<localUI:PhoneViewCell CellHeight="{Binding Height}">
-			  		<localUI:ContentControl BindingContext="{Binding Item}" ItemTemplate="{StaticResource BigProductTemplate}"/>
-				</localUI:PhoneViewCell>
-			</DataTemplate>
-			</ListView.GroupHeaderTemplate>
+        <ListView.GroupHeaderTemplate>
+          <DataTemplate>
+            <localUI:PhoneViewCell CellHeight="{Binding Height}">
+              <localUI:ContentControl BindingContext="{Binding Item}" ItemTemplate="{StaticResource BigProductTemplate}"/>
+            </localUI:PhoneViewCell>
+          </DataTemplate>
+        </ListView.GroupHeaderTemplate>
 
-		    <ListView.ItemTemplate>
-		    <DataTemplate>
-		    <ViewCell Height="200">
-			    <ContentView Padding="10">
-				  	<localUI:ContentControl ItemTemplate="{StaticResource SmallTupleProductTemplate}"/>
-			    </ContentView>
-		    </ViewCell>
-		    </DataTemplate>
-		    </ListView.ItemTemplate>
-	    </ListView>
-	</DataTemplate>
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell Height="100">
+              <ContentView Padding="10">
+                <localUI:ContentControl ItemTemplate="{StaticResource CategoryTemplate}"/>
+              </ContentView>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </DataTemplate>
 
-	<localConverters:EmptyListToBoolConverter x:Key="emptyListVisibilityConverter"/>
+    <DataTemplate x:Key="BagTemplate">
+      <StackLayout Orientation="Vertical">
+        <StackLayout BackgroundColor="#F0F0F0" Orientation="Horizontal" Padding="15">
+          <Label Text="Subtotal: " FontSize="20"/>
+          <Label Text="{Binding TotalPrice, StringFormat='{0:N2}'}" FontSize="20" FontAttributes="Bold"/>
+          <Label Text="Update" HorizontalOptions="EndAndExpand" TextColor="#4780ED" FontSize="20"/>
+        </StackLayout>
+        <ListView IsVisible="{Binding AddedItems, Converter={StaticResource emptyListVisibilityConverter}}"
+          ItemsSource="{Binding AddedItems}" ItemTemplate="{StaticResource ProductCellCheckoutTemplate}" HasUnevenRows="true"/>
+        <BoxView HorizontalOptions="CenterAndExpand" HeightRequest="1" Opacity="0.3" Color="Gray" WidthRequest="1000"/>
+        <StackLayout Orientation="Vertical" Padding="15,5,15,15" >
+          <StackLayout BackgroundColor="#4780ED" Padding="0,10,0,10"
+              IsVisible="{Binding AddedItems, Converter={StaticResource emptyListVisibilityConverter}}" >
+            <StackLayout.GestureRecognizers>
+              <TapGestureRecognizer Tapped="Checkout_Clicked"/>
+            </StackLayout.GestureRecognizers>
+            <Label Text="CHECKOUT" FontAttributes="Bold" HorizontalOptions="Center" TextColor="White" BackgroundColor="Transparent"/>
+          </StackLayout>
+          <StackLayout BackgroundColor="#EBEBEB" Padding="0,10,0,10">
+            <StackLayout.GestureRecognizers>
+              <TapGestureRecognizer Tapped="ContinueShopping_Clicked"/>
+            </StackLayout.GestureRecognizers>
+            <Label Text="CONTINUE SHOPPING" FontAttributes="Bold"  HorizontalOptions="CenterAndExpand" TextColor="Black" BackgroundColor="Transparent"/>
+          </StackLayout>
+        </StackLayout>
+      </StackLayout>
+    </DataTemplate>
+
+    <DataTemplate x:Key="OrdersTemplate">
+      <WebView Source="https://www.paypal.com/signin/"/>
+    </DataTemplate>
+
+    <localConverters:EmptyListToBoolConverter x:Key="emptyListVisibilityConverter"/>
 
 	</ResourceDictionary>
 </TabbedPage.Resources>

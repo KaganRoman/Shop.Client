@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 using System.Collections;
+using Rumble.Shop.Models;
 
 namespace Rumble.Shop
 {
@@ -14,13 +15,18 @@ namespace Rumble.Shop
 
 			InitializeComponent ();
 
-			ItemsSource = new List<string> { "Featured", "Products", "My Bag", "My Orders" };
+			ItemsSource = new List<string> {"Home", "Featured", "Products", "My Bag", "My Orders" };
 		}
 
 		protected override Page CreateDefault (object item)
 		{
 			var icon = "";
 			DataTemplate template = null;
+			if (item == "Home")
+			{
+				icon = "featured.png";
+				template = Resources["HomeTemplate"] as DataTemplate;
+			}
 			if (item == "Featured") {
 				icon = "featured.png";
 				template = Resources["FeaturedTemplate"] as DataTemplate;
@@ -85,6 +91,12 @@ namespace Rumble.Shop
 		private async void Checkout_Clicked(object sender, EventArgs e)
 		{
 			await Navigation.PushAsync (new CheckoutPage());
+		}
+
+		private void Category_Clicked(object sender, EventArgs e)
+		{
+			(BindingContext as ProductsViewModel).CurrentCategory = (sender as BindableObject).BindingContext as Category;
+            CurrentPage = Children[2];
 		}
 	}
 }
