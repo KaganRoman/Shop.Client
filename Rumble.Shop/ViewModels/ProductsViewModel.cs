@@ -7,6 +7,7 @@ using System.Threading;
 using System.Xml.Linq;
 using System.ComponentModel;
 using Rumble.Shop.Models;
+using Rumble.Shop.ViewModels;
 using Xamarin.Forms;
 
 namespace Rumble.Shop
@@ -21,8 +22,10 @@ namespace Rumble.Shop
 			Items = new List<ProductViewModel>(ProductsService.Products.Items.Select(p => new ProductViewModel(p, selectItemAction)));
 			FeaturedItems = new List<ProductViewModel>(ProductsService.Products.FeaturedItems.Select(p => new ProductViewModel(p, selectItemAction)));
 			MainItems = new List<ProductViewModel>(ProductsService.Products.MainItems.Select(p => new ProductViewModel(p, selectItemAction)));
+			Orders = new List<OrderViewModel>(ProductsService.Products.Orders.Select(p => new OrderViewModel(p, selectItemAction)));
 			CategoryItems = FeaturedItems;
 		}
+
 
 		public void RefreshCommand()
 		{
@@ -45,6 +48,8 @@ namespace Rumble.Shop
 					Concat(MainItems.Where(i => i.Added));
 			}
 		}
+
+		public List<OrderViewModel> Orders { get; set; }
 
 		public List<ProductViewModel> FeaturedItems { get; set; }
 

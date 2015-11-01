@@ -20,7 +20,7 @@ namespace Rumble.Shop
 		public List<Product> Items { get; set; }
 		public List<Product> MainItems { get; set; }
 		public List<Category> Categories { get; set; }
-
+		public List<Order> Orders { get; set; }
 
 		private Dictionary<Category, List<Product>> _categoryItems;
 
@@ -29,8 +29,50 @@ namespace Rumble.Shop
 			_categoryItems = new Dictionary<Category, List<Product>>();
             MainItems = InitMainItems();
 			Categories = InitCategories();
+			Orders = InitOrders();
 			FeaturedItems = await LoadItems("http://www.rakuten.com/ct/rss/todaysdeals.xml").ConfigureAwait(false);
 			Items = await GetCategoryItems(Categories.First()).ConfigureAwait(false);
+		}
+
+		private List<Order> InitOrders()
+		{
+			return new List<Order>
+			{
+				new Order
+				{
+					Name = "iPhone 6s",
+					ImageUrl = "http://media.meltystyle.fr/article-1608534-ajust_930-f1373442397/l-iphone-6-mini-tournera-sous-ios-8-d-apres.jpg",
+					Price = "649.99",
+					PriceD = 649.99,
+					Status = "Delivered at 10/15/2015"
+				},
+
+				new Order
+				{
+					Name = "ViewSonic VA24",
+					ImageUrl = "http://www.letsgodigital.org/images/artikelen/260/viewsonic-lcd-monitors.jpg",
+					Price = "249.00",
+					PriceD = 249,
+					Status = "Shipped two days ago"
+				},
+
+				new Order
+				{
+					Name = "MacBook Pro",
+					ImageUrl = "http://www1.pcmag.com/media/images/304604-apple-macbook-pro-13-inch-retina-display-top.jpg",
+					Price = "1399.99",
+					PriceD = 1399.99,
+					Status = "In Process"
+				},
+
+				new Order
+				{
+					Name = "Apple Watch 2",
+					ImageUrl = "http://s1.ibtimes.com/sites/www.ibtimes.com/files/styles/v2_article_large/public/2014/08/30/iwatch.jpg?itok=kDASCaDK",
+					Price = "TBA",
+					Status = "Awaiting stock"
+				},
+			};
 		}
 
 

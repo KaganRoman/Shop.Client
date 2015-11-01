@@ -88,6 +88,27 @@
         </Grid>
       </localUI:PhoneViewCell>
     </DataTemplate>
+    
+    <DataTemplate x:Key="OrderCellTemplate">
+      <localUI:PhoneViewCell  CellHeight="100" ClickCommand="{Binding ClickCommand}">
+        <Grid HeightRequest="100" IsClippedToBounds="true">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <ContentView Padding="10">
+            <Frame HasShadow="false" OutlineColor="#EBEBEB" Padding="10">
+              <localUI:FullWidthImage Aspect="AspectFill" Source="{Binding ImageUrl}"/>
+            </Frame>
+          </ContentView>
+          <StackLayout Grid.Row="0" Grid.Column="1" Padding="5, 10, 10, 10">
+            <Label Grid.Row="0" Grid.ColumnSpan="2" VerticalOptions="Center" Text="{Binding Name}" FontSize="12" FontAttributes="Bold" />
+            <Label Grid.Row="1" Grid.Column="1" FontSize="12" VerticalOptions="Start" Text="{Binding Price}" TextColor="Red" />
+            <Label FontSize="12" VerticalOptions="EndAndExpand" Text="{Binding Status}" FontAttributes="Italic" TextColor="Gray"/>
+          </StackLayout>
+        </Grid>
+      </localUI:PhoneViewCell>
+    </DataTemplate>
 
     <DataTemplate x:Key="BigProductTemplate">
       <StackLayout>
@@ -246,7 +267,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="OrdersTemplate">
-      <ContentView/>
+      <ListView ItemsSource="{Binding Orders}" ItemTemplate="{StaticResource OrderCellTemplate}" HasUnevenRows="true"/>
     </DataTemplate>
 
     <localConverters:EmptyListToBoolConverter x:Key="emptyListVisibilityConverter"/>
