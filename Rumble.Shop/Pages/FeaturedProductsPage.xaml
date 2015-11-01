@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     	xmlns:localUI="clr-namespace:Rumble.Shop.UI;assembly=Rumble.Shop"
     	x:Class="Rumble.Shop.FeaturedProductsPage"
-    	Title="S H O P P E D"
     	>
 	<ContentPage.Resources>
 	<ResourceDictionary>
@@ -25,7 +24,7 @@
 	      <StackLayout Grid.Row="0" Grid.Column="1" Padding="5, 10, 10, 10">
 	        <Label Grid.Row="0" Grid.ColumnSpan="2" VerticalOptions="Center" Text="{Binding Name}" FontSize="12" FontAttributes="Bold" />
 	        <Label Grid.Row="1" Grid.Column="1" FontSize="12" VerticalOptions="Start" Text="{Binding Price}" TextColor="Red" />
-	        <Label FontSize="12" VerticalOptions="EndAndExpand" Text="30% discount" FontAttributes="Italic" TextColor="Gray"/>
+	        <Label FontSize="12" VerticalOptions="EndAndExpand" Text="{Binding Discount, StringFormat='{0:N}% הנחה'}" FontAttributes="Italic" TextColor="Gray"/>
 	      </StackLayout>
 	    </Grid>    	
 	    </localUI:PhoneViewCell>

@@ -7,7 +7,13 @@ namespace Rumble.Shop.UI
 	{
 		protected override SizeRequest OnSizeRequest(double widthConstraint, double heightConstraint)
 		{
-			return new SizeRequest(new Size(widthConstraint, heightConstraint));
+			try
+			{
+				return new SizeRequest(new Size(widthConstraint, heightConstraint));
+			}
+			catch {
+			}
+			return base.OnSizeRequest (widthConstraint, heightConstraint);
 		}
 	}
 }

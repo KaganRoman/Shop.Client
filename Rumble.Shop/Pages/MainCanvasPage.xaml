@@ -6,7 +6,7 @@
     	xmlns:localConverters="clr-namespace:Rumble.Shop.Converters;assembly=Rumble.Shop"
     	xmlns:views="clr-namespace:Rumble.Shop.Views;assembly=Rumble.Shop"
 		x:Class="Rumble.Shop.MainCanvasPage"
-		Title="S H O P P E D"
+		Title="i M E A T"
 		>
 
  <ContentPage.ToolbarItems>
@@ -20,7 +20,11 @@
 			<StackLayout BackgroundColor="#F0F0F0" Orientation="Horizontal" Padding="15">
 				<Label Text="Subtotal: " FontSize="20"/>
 				<Label Text="{Binding TotalPrice, StringFormat='{0:N2}'}" FontSize="20" FontAttributes="Bold"/>
-				<Label Text="Update" HorizontalOptions="EndAndExpand" TextColor="#4780ED" FontSize="20"/>
+				<Label Text="Update" HorizontalOptions="EndAndExpand" TextColor="#4780ED" FontSize="20">
+				    <Label.GestureRecognizers>
+				        <TapGestureRecognizer Tapped="Update_Clicked"/>
+				    </Label.GestureRecognizers>
+				</Label>
 			</StackLayout>
 			<ListView IsVisible="{Binding AddedItems, Converter={StaticResource emptyListVisibilityConverter}}" 
 				ItemsSource="{Binding AddedItems}" ItemTemplate="{StaticResource ProductCellCheckoutTemplate}" HasUnevenRows="true"/>
@@ -45,7 +49,7 @@
 
 	<DataTemplate x:Key="OrdersTemplate">
 		<localUI:FullWidthImage Aspect="AspectFill"
-			Source="http://www.whiskyonline-shop.com/images/products/3085-5323bowmore17yobox.jpg"/>
+			Source="http://hillcountryoutdoorguide.com/wp-content/uploads/2014/11/la-barbecue.jpg"/>
 	</DataTemplate>
 
 	<DataTemplate x:Key="ProductCellCheckoutTemplate">
@@ -57,6 +61,7 @@
 	      <Grid.ColumnDefinitions>
 	        <ColumnDefinition Width="100"/>
 	        <ColumnDefinition Width="*"/>
+	        <ColumnDefinition Width="50"/>
 	      </Grid.ColumnDefinitions>
 			<ContentView Padding="10">
 				<Frame HasShadow="false" OutlineColor="#EBEBEB" Padding="10">
@@ -65,9 +70,11 @@
 			</ContentView>
 	      <StackLayout Grid.Row="0" Grid.Column="1" Padding="5, 10, 10, 10">
 	        <Label Grid.Row="0" Grid.ColumnSpan="2" VerticalOptions="Center" Text="{Binding Name}" FontSize="12" FontAttributes="Bold" />
-	        <Label Grid.Row="1" Grid.Column="1" FontSize="12" VerticalOptions="Start" Text="{Binding Price}" TextColor="Red" />
-	        <Label FontSize="12" VerticalOptions="EndAndExpand" Text="In stock" FontAttributes="Italic" TextColor="Gray"/>
+	        <Label Grid.Row="1" Grid.Column="1" FontSize="12" VerticalOptions="Start" 
+	        	Text="{Binding TotalPrice, StringFormat='{0:N2}שח'}" TextColor="Red" />
+	        <Label FontSize="12" VerticalOptions="EndAndExpand" Text="יש במלאי" FontAttributes="Italic" TextColor="Gray"/>
 	      </StackLayout>
+		  <Entry Grid.Row="0" Grid.Column="2" Text="{Binding Count}" VerticalOptions="Center" HorizontalOptions="Start"/>
 	    </Grid>    	
 	    </localUI:PhoneViewCell>
 	</DataTemplate>
@@ -115,18 +122,18 @@
 	<DataTemplate x:Key="BigProductTemplate">
 		<StackLayout>
 	    <AbsoluteLayout HeightRequest="220">
-      		<localUI:FullWidthImage Aspect="AspectFill" Source="{Binding ImageUrl}"/>
+      		<localUI:FullWidthImage Aspect="AspectFill" Source="meat/meatFront.jpg"/>
 	      	<StackLayout Orientation="Horizontal" BackgroundColor="#E04780ED"
 	      		AbsoluteLayout.LayoutBounds="0.0, 1.0, 1.0, 0.25" AbsoluteLayout.LayoutFlags="All">
 	      		<StackLayout Padding="10">
-	 	  	     	<Label HorizontalOptions="Start" Text="Save upto 50%" TextColor="White" FontAttributes="Bold" FontSize="12"/>
-	 	  	     	<Label HorizontalOptions="Start" Text="On selected products" TextColor="White" FontSize="12"/>
+	 	  	     	<Label HorizontalOptions="Start" Text="בקניה מעל 250 ש', משלוחים חינם" TextColor="White" FontAttributes="Bold" FontSize="12"/>
+	 	  	     	<Label HorizontalOptions="Start" Text="בקניה מעל סך של 400 ש' - הנחה של 10%" TextColor="White" FontSize="12"/>
 	      		</StackLayout>
 				<Frame VerticalOptions="Center" HorizontalOptions="EndAndExpand" Padding="5" BackgroundColor="Transparent" OutlineColor="White" HasShadow="false">
 					    <Frame.GestureRecognizers>
 					        <TapGestureRecognizer Tapped="ViewOffer_Clicked"/>
 					    </Frame.GestureRecognizers>
-					 	<Label HorizontalOptions="End" VerticalOptions="Center" Text="View offer" TextColor="White" FontSize="12"/>
+					 	<Label HorizontalOptions="End" VerticalOptions="Center" Text="מבצעים!!!‬" TextColor="White" FontSize="14"/>
       			</Frame>
 				<ContentView WidthRequest="10"/>
           </StackLayout>

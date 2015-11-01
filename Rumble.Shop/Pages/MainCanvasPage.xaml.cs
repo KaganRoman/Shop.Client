@@ -86,6 +86,11 @@ namespace Rumble.Shop
 		{
 			await Navigation.PushAsync (new CheckoutPage());
 		}
+
+		private void Update_Clicked(object sender, EventArgs e)
+		{
+			(BindingContext as ViewModelBase).OnPropertyChanged ("TotalPrice");
+		}
 	}
 }
 

@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Rumble.Shop.ProductPage"
 	xmlns:localUI="clr-namespace:Rumble.Shop.UI;assembly=Rumble.Shop" 
-	Padding="15" Title="S H O P P E D" >
+	Padding="15" >
 
 	 <ContentPage.ToolbarItems>
 	  <ToolbarItem x:Name="_addCart" Name="Add" Icon="cart.png" />
@@ -12,7 +12,7 @@
 		<StackLayout Orientation="Vertical" BackgroundColor="White">
 			<StackLayout Orientation="Horizontal">
 				<Label Text="{Binding Name}" FontAttributes="Bold" FontSize="16" HorizontalOptions="StartAndExpand"/>
-				<Label Text="{Binding Price}" WidthRequest="65" FontAttributes="Bold" FontSize="16" HorizontalOptions="End" TextColor="Red"/>
+				<Label Text="{Binding Price}" WidthRequest="100" FontAttributes="Bold" FontSize="16" HorizontalOptions="End" TextColor="Red"/>
 			</StackLayout>
 			<BoxView HorizontalOptions="CenterAndExpand" HeightRequest="1" Opacity="0.3" Color="Gray" WidthRequest="1000"/>
 			<Image Aspect="AspectFit" Source="{Binding ImageUrl}" HeightRequest="120"/>

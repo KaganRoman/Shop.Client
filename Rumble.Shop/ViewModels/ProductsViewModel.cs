@@ -21,8 +21,8 @@ namespace Rumble.Shop
 			FeaturedItems = new List<ProductViewModel> ();
 
 			InitMainItems ();
-			InitItems ();
 			InitFeaturedItems ();
+			InitItems ();
 		}
 
 		public void RefreshCommand()
@@ -34,16 +34,14 @@ namespace Rumble.Shop
 		public double TotalPrice
 		{
 			get {
-				return AddedItems.Sum (i => i.PriceD);
+				return AddedItems.Sum (i => i.TotalPrice);
 			}
 		}
 
 		public IEnumerable<ProductViewModel> AddedItems
 		{
 			get {
-				return Items.Where (i => i.Added).
-					Concat(FeaturedItems.Where(i => i.Added)).
-					Concat(MainItems.Where(i => i.Added));
+				return Items.Where (i => i.Added);
 			}
 		}
 
@@ -122,51 +120,60 @@ namespace Rumble.Shop
 		{
 			MainItems = new List<ProductViewModel> {
 				new ProductViewModel {
-					Name = "iPhone 5C",
-					ImageUrl = "http://www.adweek.com/files/imagecache/node-blog/blogs/apple-colorrules-hed-2013.jpg",
-					Price = "649.00",
-					PriceD = 649,
+					Name = "",
+					ImageUrl = "",
+					Details = "",
+					Price = "",
+					PriceD = 0,
+					Category = "מיוחדים",
 				},
 				new ProductViewModel {
-					Name = "ViewSonic VA24",
-					ImageUrl = "http://www.letsgodigital.org/images/artikelen/260/viewsonic-lcd-monitors.jpg",
-					Price = "249.00",
-					PriceD = 249,
-					Details = @"ViewSonic’s VA2037m-LED features an LED backlight 20” (19.5” viewable) widescreen monitor with integrated speakers."
+					Category = "מיוחדים",
+					Name = "המבורגר אמריקאי",
+					ImageUrl = "http://shop.vacuumsealersunlimited.com/images/13612318500351088375803.jpeg",
+					Price = " 40 ש' לק\"ג",
+					PriceD = 40,
+					Details = @"חדש!! המבורגר אמריקאי קטלני - תרכובת עצמית ובלעדית"
 				},
 				new ProductViewModel {
-					Name = "Apple Mouse",
-					ImageUrl = "http://store.storeimages.cdn-apple.com/4391/as-images.apple.com/is/image/AppleInc/aos/published/images/M/B8/MB829/MB829?wid=400&hei=400&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=1400690353435",
-					Price = "79.99",
-					PriceD = 79.99,
-					Details = @"Magic Mouse — with its low-profile design and seamless top shell — is so sleek and dramatically different, it brings a whole new feel to the way you get around on your Mac. "
+					Category = "מיוחדים",
+					Name = "שווארמה בקר",
+					ImageUrl = "http://www.mega.co.il/resources/9919.jpg",
+					Price = " 40 ש' לק\"ג",
+					PriceD = 40,
+					Details = @"חדש!! שווארמה בקר יחודית במינה"
 				},
 				new ProductViewModel {
-					Name = "iPad Mini",
-					ImageUrl = "http://i-cdn.phonearena.com/images/articles/98755-image/Apple-iPad-mini-2.jpg",
-					Price = "349.00",
-					PriceD = 349,
-					Details = @"We made iPad mini small. We made it fast. We made it incredibly capable. And now we made it even better. With advancements like Touch ID and iOS 8, and a new gold ﬁnish, there’s even more about iPad mini to love."
+					Category = "מיוחדים",
+					Name = "קבב הבית טרי",
+					ImageUrl = "http://www.alfredos.co.il/wp-content/uploads/2014/11/קבב-ביתי1.jpg",
+					Price = " 45 ש' לק\"ג",
+					PriceD = 45,
+					Details = "קבב הבית טרי (מתכון מיוחד) "
 				},
 				new ProductViewModel {
-					Name = "iPhone 6",
-					ImageUrl = "http://media.meltystyle.fr/article-1608534-ajust_930-f1373442397/l-iphone-6-mini-tournera-sous-ios-8-d-apres.jpg",
-					Price = "649.99",
-					PriceD = 649.99,
-					Details = "iPhone 6 isn’t simply bigger — it’s better in every way. Larger, yet dramatically thinner. More powerful, but remarkably power efficient. With a smooth metal surface that seamlessly meets the new Retina HD display. "
+					Category = "מיוחדים",
+					Name = "שניצל שייטל",
+					ImageUrl = "http://www.ynet.co.il/PicServer2/13062011/3308683/20_wa.jpg",
+					Details = "שניצל שייטל, בקר פרוס דק ורך",
+					Price = " 50 ש' לק\"ג",
+					PriceD = 50,
 				},
 				new ProductViewModel {
-					Name = "MacBook Pro",
-					ImageUrl = "http://www1.pcmag.com/media/images/304604-apple-macbook-pro-13-inch-retina-display-top.jpg",
-					Price = "1399.99",
-					PriceD = 1399.99,
-					Details = "A groundbreaking Retina display. All-flash architecture. Fourth-generation Intel processors. Remarkably thin and light 13‑inch and 15‑inch designs. Together, these features take the notebook to a place it’s never been."
+					Category = "מיוחדים",
+					Name = "סטייק אנטריקוט דבש",
+					ImageUrl = "http://www.edenteva.co.il/Data/ImportedProductsNew/230021.jpg",
+					Details = "סטייק אנטריקוט דבש",
+					Price = " 100 ש' לק\"ג",
+					PriceD = 100,
 				},
 				new ProductViewModel {
-					Name = "iWatch",
-					ImageUrl = "http://s1.ibtimes.com/sites/www.ibtimes.com/files/styles/v2_article_large/public/2014/08/30/iwatch.jpg?itok=kDASCaDK",
-					Price = "TBA",
-					Details = "High-quality watches have long been defined by their ability to keep unfailingly accurate time, and Apple Watch is no exception. It uses multiple technologies in conjunction with your iPhone to keep time within 50 milliseconds of the definitive global time standard. And it can automatically adjust to the local time when you travel. Apple Watch also presents time in a more meaningful, personal context by sending you notifications and alerts relevant to your life and schedule."
+					Category = "מיוחדים",
+					Name = "סטייק סינטה",
+					ImageUrl = "http://img.mako.co.il/2008/01/12/01/raw-meat_c.jpg",
+					Details = "סטייק סינטה גבוהה ושמנה",
+					Price = " 85 ש' לק\"ג",
+					PriceD = 85,
 				},
 			};
 
@@ -185,12 +192,107 @@ namespace Rumble.Shop
 
 		private async Task InitFeaturedItems()
 		{
-			FeaturedItems = await LoadItems ("http://www.rakuten.com/ct/rss/todaysdeals.xml");
+			FeaturedItems = new List<ProductViewModel> {
+				new ProductViewModel {
+					Category = "מבצעים",
+					Name = @"10 ק""ג בשר טחון טרי",
+					ImageUrl = "http://orders.webyarok.biz/wp-content/uploads/2012/10/tachun_bakar1.jpg",
+					Price = "300 ש' 10 ק\"ג",
+					PriceD = 300,
+					Details = @" בשר טחון טרי (לטחינה במקום)",
+					Discount = 30
+				},
+				new ProductViewModel
+				{
+					Name = "4 קג אסאדו",
+					ImageUrl = "http://www.jackspratsbutchery.com.au/wp-content/uploads/2012/07/Rib-eye-roast-grass-fed-beef-Jack-Sprats-Butchery-Large1.jpg",
+					Details = "אסאדו של מבכירות היישר ממקום הגידול ברמת הגולן ",
+					Price = "100 ש' 4 ק\"ג",
+					PriceD = 100,
+					Discount = 15,
+					Category = "מבצעים",
+				},
+				new ProductViewModel
+				{
+					Name = "3 קג בשר טחון",
+					ImageUrl = "http://orders.webyarok.biz/wp-content/uploads/2012/10/tachun_bakar1.jpg",
+					Details = "טחינה במקום - לקציצות בשר ברוטב/ לקובה עיראקית/לבולונז/לקבב",
+					Price = "105 ש' 3 ק\"ג",
+					PriceD = 105,
+					Discount = 15,
+					Category = "מבצעים",
+				},
+				new ProductViewModel
+				{
+					Name = "3 קג קבב הבית טרי",
+					ImageUrl = "http://www.alfredos.co.il/wp-content/uploads/2014/11/קבב-ביתי1.jpg",
+					Details = "קבב הבית טרי (מתכון מיוחד)",
+					Price = "120 ש' 3 ק\"ג",
+					PriceD = 120,
+					Discount = 20,
+					Category = "מבצעים",
+				},
+				new ProductViewModel
+				{
+					Name = "3 קג שניצל שייטל",
+					ImageUrl = "http://www.ynet.co.il/PicServer2/13062011/3308683/20_wa.jpg",
+					Details = "שניצל שייטל, בקר פרוס דק ורך",
+					Price = "135 ש' 3 ק\"ג",
+					PriceD = 135,
+					Discount = 20,
+					Category = "מבצעים",
+				},
+				new ProductViewModel
+				{
+					Name = "3 קג אוסובוקו עסיסי",
+					ImageUrl = "http://www.yepmarket.co.il/uploadPictures/osoboko.jpg",
+					Details = "אוסובוקו עסיסי במיוחד",
+					Price = "105 ש' 3 ק\"ג",
+					PriceD = 105,
+					Discount = 15,
+					Category = "מבצעים",
+				},
+				new ProductViewModel
+				{
+					Name = "3 קג בשר פרוסות/קוביות",
+					ImageUrl = "http://blog.tapuz.co.il/tastefood/images/%7B04BBA43C-4579-45E7-ACED-B0F8D15A99E4%7D.jpg",
+					Details = "בשר פרוסות/קוביות (כתף/צ'אך/אווזית)",
+					Price = "105 ש' 3 ק\"ג",
+					PriceD = 105,
+					Discount = 15,
+					Category = "מבצעים",
+				},
+				new ProductViewModel
+				{
+					Name = "3 קג סטייק אנטריקוט",
+					ImageUrl = "http://www.edenteva.co.il/Data/ImportedProductsNew/230021.jpg",
+					Details = "סטייק אנטריקוט דבש",
+					Price = "285 ש' 3 ק\"ג",
+					PriceD = 285,
+					Discount = 25,
+					Category = "מבצעים",
+				},
+				new ProductViewModel
+				{
+					Name = "3 קג סטייק סינטה",
+					ImageUrl = "http://img.mako.co.il/2008/01/12/01/raw-meat_c.jpg",
+					Details = "סטייק סינטה גבוהה ושמנה",
+					Price = "240 ש' 3 ק\"ג",
+					PriceD = 240,
+					Discount = 25,
+					Category = "מבצעים",
+				},
+
+			};
+			foreach (var item in FeaturedItems)
+				item.ClickCommand = new Command (_selectItemAction);
+
+			//FeaturedItems = await LoadItems ("http://www.rakuten.com/ct/rss/todaysdeals.xml");
 		}
 
 		private async Task InitItems()
 		{
-			Items = await LoadItems ("http://www.rakuten.com/ct/rss/electronics.xml");
+			Items = FeaturedItems.Concat (MainItems.Skip(1)).ToList ();
 		}
 
 		private async Task<List<ProductViewModel>> LoadItems(string url)

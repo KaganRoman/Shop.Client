@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>Rumble.Shop.iOS</string>
+	<string>Rumble.Meat.iOS</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.rumblenews.shopsdemo</string>
+	<string>com.rumblenews.meatdemo</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
