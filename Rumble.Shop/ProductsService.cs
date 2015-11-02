@@ -26,14 +26,28 @@ namespace Rumble.Shop
 
 		private Dictionary<Category, List<Product>> _categoryItems;
 
+		public bool IsInited { get; set; }
+
+		public ProductsService()
+		{
+			FeaturedItems = new List<Product> ();
+			Items = new List<Product> ();
+			MainItems = new List<Product> ();
+			Categories = new List<Category> ();
+			Orders = new List<Order> ();
+			_categoryItems = new Dictionary<Category, List<Product>>();
+		}
+
 		public async Task Init()
 		{
-			_categoryItems = new Dictionary<Category, List<Product>>();
+			if (IsInited)
+				return;
             MainItems = InitMainItems();
 			Categories = InitCategories();
 			Orders = InitOrders();
 			FeaturedItems = await LoadItems("http://www.rakuten.com/ct/rss/todaysdeals.xml").ConfigureAwait(false);
 			Items = await GetCategoryItems(Categories.First()).ConfigureAwait(false);
+			IsInited = true;
 		}
 
 		private List<Order> InitOrders()

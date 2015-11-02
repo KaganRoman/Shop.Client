@@ -8,8 +8,6 @@ namespace Rumble.Shop
 	{
 		public App ()
 		{
-			ProductsService.Products.Init().Wait();
-
 			// The root page of your application
 			var navPage = new NavigationPage (new MainCanvasPage());
 			navPage.BarTextColor = Color.White;

@@ -19,13 +19,28 @@ namespace Rumble.Shop
 		public ProductsViewModel(Action<object> selectItemAction)
 		{
 			_selectItemAction = selectItemAction;
-			Items = new List<ProductViewModel>(ProductsService.Products.Items.Select(p => new ProductViewModel(p, selectItemAction)));
-			FeaturedItems = new List<ProductViewModel>(ProductsService.Products.FeaturedItems.Select(p => new ProductViewModel(p, selectItemAction)));
-			MainItems = new List<ProductViewModel>(ProductsService.Products.MainItems.Select(p => new ProductViewModel(p, selectItemAction)));
-			Orders = new List<OrderViewModel>(ProductsService.Products.Orders.Select(p => new OrderViewModel(p, selectItemAction)));
-			CategoryItems = FeaturedItems;
+
+			if (ProductsService.Products.IsInited)
+				Init ();
+			else {
+				Items = new List<ProductViewModel>();
+				FeaturedItems = new List<ProductViewModel>();
+				MainItems = new List<ProductViewModel>();
+				Orders = new List<OrderViewModel>();
+				CategoryItems = FeaturedItems;
+					
+				ProductsService.Products.Init ().ContinueWith ((t) => Init ()); 
+			}
 		}
 
+		private void Init()
+		{
+			Items = new List<ProductViewModel>(ProductsService.Products.Items.Select(p => new ProductViewModel(p, _selectItemAction)));
+			FeaturedItems = new List<ProductViewModel>(ProductsService.Products.FeaturedItems.Select(p => new ProductViewModel(p, _selectItemAction)));
+			MainItems = new List<ProductViewModel>(ProductsService.Products.MainItems.Select(p => new ProductViewModel(p, _selectItemAction)));
+			Orders = new List<OrderViewModel>(ProductsService.Products.Orders.Select(p => new OrderViewModel(p, _selectItemAction)));
+			CategoryItems = FeaturedItems;
+		}
 
 		public void RefreshCommand()
 		{
@@ -48,9 +63,31 @@ namespace Rumble.Shop
 			}
 		}
 
-		public List<OrderViewModel> Orders { get; set; }
+		private List<OrderViewModel> _orders;
+		public List<OrderViewModel> Orders 
+		{ 
+			get { return _orders; } 
+			set {
+				if (_orders != value)
+				{
+					_orders = value;
+					OnPropertyChanged();
+				}
+			}
+		}
 
-		public List<ProductViewModel> FeaturedItems { get; set; }
+		private List<ProductViewModel> _featuredItems;
+		public List<ProductViewModel> FeaturedItems 
+		{ 
+			get { return _featuredItems; } 
+			set {
+				if (_featuredItems != value)
+				{
+					_featuredItems = value;
+					OnPropertyChanged();
+				}
+			}
+		}
 
 		private List<ProductViewModel> _categoryItems;
         public List<ProductViewModel> CategoryItems
@@ -63,6 +100,7 @@ namespace Rumble.Shop
 			        _categoryItems = value;
 					OnPropertyChanged();
 					OnPropertyChanged("GroupedItems");
+					OnPropertyChanged("HomeItems");
 				}
 			}
 		}
@@ -107,7 +145,8 @@ namespace Rumble.Shop
 			} 
 		}
 
-		public ProductViewModel MainItem { get { return MainItems [0];} }
+		public ProductViewModel MainItem { get { return MainItems.Count > 0 ? MainItems [0] : 
+				new ProductViewModel(new Product(), _selectItemAction);} }
 
 		public List<ProductViewModel> MainItems { get; set; }
 		public IEnumerable<IGrouping<string, ProductViewModel>> MainGroupedItems { 
@@ -134,6 +173,9 @@ namespace Rumble.Shop
 		{
 			get
 			{
+				if (ProductsService.Products.Categories == null ||
+				   ProductsService.Products.Categories.Count == 0)
+					return new List<Grouping> ();
 				var l = new List<Grouping>
 				{
 					new Grouping("0", 280, ProductsService.Products.Categories.GetRange(0,1))
