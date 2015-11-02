@@ -90,7 +90,7 @@
     </DataTemplate>
     
     <DataTemplate x:Key="OrderCellTemplate">
-      <localUI:PhoneViewCell  CellHeight="100" ClickCommand="{Binding ClickCommand}">
+      <localUI:PhoneViewCell  CellHeight="100">
         <Grid HeightRequest="100" IsClippedToBounds="true">
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>

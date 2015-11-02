@@ -39,7 +39,8 @@ namespace Rumble.Shop
 		{
 			//_addToBag.BackgroundColor = Product.Added ? Color.FromHex("#EBEBEB") : Color.FromHex("#4780ED");
 			//_addToBagLabel.TextColor = Product.Added ? Color.Black : Color.White;
-			_addToBagLabel.Text = Product.Added ? "REMOVE FROM BAG" : "ADD TO BAG";
+			if(Product != null)
+				_addToBagLabel.Text = Product.Added ? "REMOVE FROM BAG" : "ADD TO BAG";
 		}
 	}
 }
