@@ -51,7 +51,7 @@ namespace Rumble.Shop
 		public double TotalPrice
 		{
 			get {
-				return AddedItems.Sum (i => i.Product.PriceD);
+				return AddedItems.Sum (i => i.Product.PriceD*i.Product.Quantity);
 			}
 		}
 
