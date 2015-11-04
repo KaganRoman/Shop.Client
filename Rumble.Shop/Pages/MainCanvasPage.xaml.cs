@@ -15,7 +15,7 @@ namespace Rumble.Shop
 
 			InitializeComponent ();
 
-			ItemsSource = new List<string> {"Home", "Featured", "Products", "My Bag", "My Orders" };
+			ItemsSource = new List<string> {"Home", "Featured", "Products", "My Cart", "My Orders" };
 		}
 
 		protected override Page CreateDefault (object item)
@@ -35,7 +35,7 @@ namespace Rumble.Shop
 				icon = "products.png";
 				template = Resources["ProductsTemplate"] as DataTemplate;
 			}
-			if (item == "My Bag") {
+			if (item == "My Cart") {
 				icon = "bag.png";
 				template = Resources["BagTemplate"] as DataTemplate;
 			}

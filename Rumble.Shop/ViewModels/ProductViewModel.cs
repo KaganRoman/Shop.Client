@@ -33,10 +33,23 @@ namespace Rumble.Shop
 			set { 
 				if (Product.Added != value) {
 					Product.Added = value;
-					OnPropertyChanged ("Added");
+					OnPropertyChanged ();
 				}
 			}
 		}
+
+		public int Quantity { 
+			get { 
+				return Product.Quantity; 
+			}
+			set { 
+				if (Product.Quantity != value) {
+					Product.Quantity = value;
+					OnPropertyChanged ();
+				}
+			}
+		}
+
 	}
 }
 

@@ -33,6 +33,8 @@ namespace Rumble.Shop
 		{
 			base.OnBindingContextChanged ();
 			SelectLabelProperties ();
+			if (Product != null)
+				_qPicker.SelectedIndex = Product.Quantity - 1;
 		}
 
 		private void SelectLabelProperties()
@@ -40,7 +42,12 @@ namespace Rumble.Shop
 			//_addToBag.BackgroundColor = Product.Added ? Color.FromHex("#EBEBEB") : Color.FromHex("#4780ED");
 			//_addToBagLabel.TextColor = Product.Added ? Color.Black : Color.White;
 			if(Product != null)
-				_addToBagLabel.Text = Product.Added ? "REMOVE FROM BAG" : "ADD TO BAG";
+				_addToBagLabel.Text = Product.Added ? "REMOVE FROM CART" : "ADD TO CART";
+		}
+
+		private void Picker_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			Product.Quantity = _qPicker.SelectedIndex + 1;
 		}
 	}
 }

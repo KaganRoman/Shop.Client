@@ -8,9 +8,8 @@
 		>
 
  <ContentPage.ToolbarItems>
-   <ToolbarItem Name="       " />
+   <ToolbarItem Name="                 " />
    <ToolbarItem Name="Home" Icon="home.png" Clicked="ToolbarItem_Clicked" />
-   <ToolbarItem Name="Search" Icon="search.png" Clicked="ToolbarItem_Clicked"/>
    <ToolbarItem Name="Cart" Icon="cart.png" Clicked="ToolbarItem_Clicked"/>
  </ContentPage.ToolbarItems>
 

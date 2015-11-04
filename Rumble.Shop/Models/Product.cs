@@ -16,5 +16,10 @@ namespace Rumble.Shop.Models
 		public string Category { get; set; }
 		public string Details { get; set; }
 		public bool Added { get; set; }
+		public int Quantity { get; set; }
+
+		public Product() {
+			Quantity = 1;
+		}
     }
 }
