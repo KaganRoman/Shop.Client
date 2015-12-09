@@ -4,7 +4,7 @@
 	Padding="15" Title="" >
 
 	 <ContentPage.ToolbarItems>
-	  <ToolbarItem Name="Share" Icon="share.png" />
+	  <ToolbarItem Name="Search" Icon="search.png" />
 	  <ToolbarItem x:Name="_addCart" Name="Add" Icon="cart.png" />
 	 </ContentPage.ToolbarItems>
 
@@ -39,6 +39,10 @@
 			</StackLayout>
 			<StackLayout BackgroundColor="#EBEBEB" Padding="0,8,0,8">
 				<Label Text="SAVE FOR LATER" FontAttributes="Bold"  HorizontalOptions="CenterAndExpand" TextColor="Black" BackgroundColor="Transparent"/>
+			</StackLayout>
+			<StackLayout Padding="3,8,0,8" Orientation="Horizontal">
+				<Image Source="share.png"/>
+				<Label Text="Share" HorizontalOptions="StartAndExpand" TextColor="Black" BackgroundColor="Transparent"/>
 			</StackLayout>
 		</StackLayout>
 	</ContentPage.Content>

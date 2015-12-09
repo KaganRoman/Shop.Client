@@ -36,7 +36,7 @@ namespace Rumble.Shop
 				template = Resources["ProductsTemplate"] as DataTemplate;
 			}
 			if (item == "My Cart") {
-				icon = "bag.png";
+				icon = "cart.png";
 				template = Resources["BagTemplate"] as DataTemplate;
 			}
 			if (item == "My Orders") {
@@ -108,6 +108,23 @@ namespace Rumble.Shop
 				CurrentPage = Children[0];
 			if (item.Text == "Cart")
 				CurrentPage = Children[3];
+		}
+
+		private void Picker_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			var picker = sender as Picker;
+			if (null == picker)
+				return;
+			var product = picker.BindingContext as ProductViewModel;
+			if (product == null)
+				return;
+
+			// Ugly hack to prevent endless loop
+			var total = (BindingContext as ProductsViewModel).TotalPrice;
+			var page = CurrentPage as ContentPage;
+			var totalEl = page.Content.FindByName<Label> ("_totalLbl");
+			if(totalEl != null && string.Format("{0:N2}",total) != totalEl.Text)
+				(BindingContext as ProductsViewModel).RefreshCommand();
 		}
 	}
 }

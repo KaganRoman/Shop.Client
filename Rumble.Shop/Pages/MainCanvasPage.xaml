@@ -9,7 +9,7 @@
 
  <ContentPage.ToolbarItems>
    <ToolbarItem Name="                 " />
-   <ToolbarItem Name="Home" Icon="home.png" Clicked="ToolbarItem_Clicked" />
+   <ToolbarItem Name="Search" Icon="search.png" Clicked="ToolbarItem_Clicked" />
    <ToolbarItem Name="Cart" Icon="cart.png" Clicked="ToolbarItem_Clicked"/>
  </ContentPage.ToolbarItems>
 
@@ -35,7 +35,17 @@
 	        <StackLayout Orientation="Horizontal">
 	        	<Label Grid.Row="1" Grid.Column="1" FontSize="12" VerticalOptions="Start" Text="{Binding Price}" TextColor="Red" />
 	        	<Label Grid.Row="1" Grid.Column="1" FontSize="12" VerticalOptions="Start" Text="x"  TextColor="Gray" />
-	        	<Label Grid.Row="1" Grid.Column="1" FontSize="12" VerticalOptions="Start" Text="{Binding Quantity}" />
+
+				<Picker SelectedIndex="{Binding Quantity}" HorizontalOptions="End" SelectedIndexChanged="Picker_SelectedIndexChanged">
+					<Picker.Items>
+						<x:String>0</x:String>
+						<x:String>1</x:String>
+						<x:String>2</x:String>
+						<x:String>3</x:String>
+						<x:String>4</x:String>
+						<x:String>5</x:String>
+					</Picker.Items>
+				</Picker>
 	        </StackLayout>
 	        <Label FontSize="12" VerticalOptions="EndAndExpand" Text="In stock" FontAttributes="Italic" TextColor="Gray"/>
 	      </StackLayout>
@@ -133,7 +143,11 @@
           </StackLayout>
         </AbsoluteLayout>
         <StackLayout Padding="1">
-          <Image HeightRequest="50" Source="banner.jpg" Aspect="AspectFit"/>
+          <Image HeightRequest="50" Source="banner.jpg" Aspect="AspectFit">
+              <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="ViewOffer_Clicked"/>
+              </Image.GestureRecognizers>
+          </Image>
         </StackLayout>
       </StackLayout>
     </DataTemplate>
@@ -245,7 +259,7 @@
       <StackLayout Orientation="Vertical">
         <StackLayout BackgroundColor="#F0F0F0" Orientation="Horizontal" Padding="15">
           <Label Text="Subtotal: " FontSize="20"/>
-          <Label Text="{Binding TotalPrice, StringFormat='{0:N2}'}" FontSize="20" FontAttributes="Bold"/>
+          <Label Text="{Binding TotalPrice, StringFormat='{0:N2}'}" FontSize="20" FontAttributes="Bold" x:Name="_totalLbl"/>
           <Label Text="Update" HorizontalOptions="EndAndExpand" TextColor="#4780ED" FontSize="20"/>
         </StackLayout>
         <ListView IsVisible="{Binding AddedItems, Converter={StaticResource emptyListVisibilityConverter}}"
